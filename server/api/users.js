@@ -1,24 +1,90 @@
 const router = require("express").Router();
-const { User } = require("../db/model");
+const { User, Budget, Transaction, Account } = require("../db/model");
 module.exports = router;
 
 router.get("/:id", async (req, res, next) => {
   try {
     const userId = req.params.id;
-    const user = await User.findAll({
-      // explicitly select only the id and email fields - even though
-      // users' passwords are encrypted, it won't help if we just
-      // send everything to anyone who asks!
-      attributes: ["id", "email", "firstName", "lastName", "userName"],
-      where: { id: req.user.id },
-      // the ternary above checks if user is an admin (using isAdmin instance method)
-      // returns an empty object so that all users are displayed for Admin
-      // returns only current user's account info
+    const data = await User.findOne({
+      where: { id: userId },
+      include: [{ model: Account }, { model: Budget }, { model: Transaction }],
+    });
+    if (data) {
+      res.json(data);
+    } else {
+      res.sendStatus(404);
+    }
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post("/", async (req, res, next) => {
+  try {
+    const newUser = await User.create(req.body);
+    if (newUser) {
+      res.json({ message: "Created Successfully", newUser });
+    } else {
+      res.sendStatus(500);
+    }
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.put("/:id", async (req, res, next) => {
+  try {
+    const userId = req.params.id;
+    await User.update(
+      {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        password: req.body.password,
+        userId: req.body.userId,
+        userName: req.body.userName,
+      },
+      {
+        where: {
+          id: userId,
+        },
+      }
+    );
+    if (!userId) {
+      res.sendStatus(500);
+    } else {
+      const updatedUser = await Project.findOne({
+        where: { id: userId },
+      });
+      res.json({
+        message: "User updated successfully",
+        project: updatedUser,
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.delete("/:id", async (req, res, next) => {
+  try {
+    const userId = req.params.id;
+    const user = User.findOne({
+      where: {
+        id: userId,
+      },
     });
     if (user) {
-      res.status(200).json(users);
+      User.destroy({
+        where: {
+          id: userId,
+        },
+      });
+      res.json({
+        message: "User Deleted successfully!",
+      });
     } else {
-      res.status(404).send("Cannot find user");
+      res.sendStatus(404);
     }
   } catch (error) {
     next(error);
