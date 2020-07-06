@@ -19,7 +19,7 @@ const plaidClient = new plaid.Client(
 );
 
 
-// when user signs up for our app - pulls 2 months data & saves to db
+// when user signs up for our app - pulls 3 months data & saves to db
 router.post('/plaid_exchange', async (req, res, next) => {
     let ACCESS_TOKEN = 'null';
     let ITEM_ID = null;
@@ -48,7 +48,7 @@ router.post('/plaid_exchange', async (req, res, next) => {
                     userId: user.id
                 });
 
-                /*-------------get ACOUNTS & TRANSACTIONS details from the last 5 months-----------*/
+                /*-------------get ACOUNTS & TRANSACTIONS details from the last 3 months-----------*/
                 let startDate = moment()
                     .subtract(90, 'days')
                     .format('YYYY-MM-DD');
