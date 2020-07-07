@@ -14,8 +14,7 @@ router.post('/login', (req, res, next) => {
         res.status(401).send('Wrong username and/or password');
       } else {
         let currentDate = new Date();
-        let userId = user.id;
-        user.update({ pushToken: req.body.pushToken, lastLogin: currentDate });
+        user.update({ lastLogin: currentDate });
       }
     })
     .catch(next);
