@@ -3,14 +3,14 @@ import React from "react";
 import { Provider } from "react-redux";
 import { StyleSheet, Text, View } from "react-native";
 import store from "./client/index";
-import { SignUp } from "./client/screens/OnBoard/Signup";
+import SignUp from "./client/screens/OnBoard/Signup";
+import PlaidLink from './client/screens/OnBoard/PlaidLink'
 export default function App() {
   return (
     <Provider store={store}>
-      <View style={styles.container}>
-        <Text>WALLET</Text>
-        <SignUp></SignUp>
-        <StatusBar style="auto" />
+      <View>
+        <Text>Pls show</Text>
+        <PlaidLink />
       </View>
     </Provider>
   );

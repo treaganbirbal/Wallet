@@ -3,6 +3,10 @@ import { View, Text, TextInput, Button } from "react-native";
 import { connect } from "react-redux";
 
 export class SignUp extends Component {
+  constructor() {
+    super(props);
+    this.state = { email: '', password: '' };
+  }
   render() {
     return (
       <View>

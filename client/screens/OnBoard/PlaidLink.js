@@ -1,61 +1,43 @@
-import React from 'react';
-import PlaidAuthenticator from 'react-native-plaid-link';
-import { connect } from 'react-redux';
+import React, { Component } from 'react';
+import { Text, View, StyleSheet } from 'react-native';
+import { WebView } from 'react-native-webview';
+const PLAID_PUBLIC_KEY = 'e192da42c496ba424b0a39f9cdb07a'
+const PLAID_ENV = 'sandbox'
+const PLAID_PRODUCT = 'auth,transactions'
 
-import { sendToken } from '../../store/token';
-
-class PlaidLink extends React.Component {
-    state = {
-        data: {},
-        status: ''
-    };
-
-    render() {
-        switch (this.state.status) {
-            case 'CONNECTED':
-                return this.renderDetails();
-            default:
-                return this.renderLogin();
+export default class PlaidLink extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            authed: false,
+            data: {}
         }
     }
 
-    renderLogin() {
+    render() {
         return (
-            <PlaidAuthenticator
-                onMessage={this.onMessage}
-                publicKey="e192da42c496ba424b0a39f9cdb07a"
-                env="sandbox"
-                product="auth,transactions"
-                clientName="MoneyMentor"
-            />
+            this.state.data.action && this.state.data.action.indexOf('::connected') !== -1 ?
+                this.renderDetails() : this.renderLogin()
         );
+    }
+    renderLogin() {
+        return <WebView
+            source={{ uri: `https://cdn.plaid.com/link/v2/stable/link.html?key=${PLAID_PUBLIC_KEY}&env=${PLAID_ENV}&product=${PLAID_PRODUCT}&clientName=CatalinMiron&isWebView=true&isMobile=true&webhook=http://google.com` }}
+            onMessage={(e) => this.onMessage(e)}
+        />
     }
 
     renderDetails() {
-        this.props.sendToken(this.state.data.metadata.public_token);
-
-        return (
-            <View >
-                <Text >THIS SHOWS UP AFTER LINK IS COMPLETED</Text>
-            </View>
-        );
+        return <View style={styles.container}>
+            <Text>Institution: {this.state.data.metadata.institution.name}</Text>
+            <Text>Institution ID: {this.state.data.metadata.institution.institution_id}</Text>
+            <Text>Token: {this.state.data.metadata.public_token}</Text>
+        </View>
     }
 
-    onMessage = data => {
+    onMessage(e) {
         this.setState({
-            data,
-            status: data.action.substr(data.action.lastIndexOf(':') + 1).toUpperCase()
-        });
-    };
+            data: JSON.parse(e.nativeEvent.data)
+        })
+    }
 }
-
-const mapDispatch = dispatch => {
-    return {
-        sendToken: token => dispatch(sendToken(token))
-    };
-};
-
-export default connect(
-    null,
-    mapDispatch
-)(PlaidLink);
