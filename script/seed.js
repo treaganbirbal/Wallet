@@ -7,6 +7,7 @@ const {
     Account,
     Item,
     Budget,
+    LoginStreak,
 } = require('../server/db/models');
 
 const loginDateArr = doTimes(60).map(date => new Date(date));
@@ -122,6 +123,23 @@ async function seed() {
         accessToken: 'access-sandbox-456',
     });
 
+    /*-------------------- Login ----------------------*/
+    const loginData = [
+        ...loginDateArr.map(day => {
+            return {
+                lastLogin: day,
+                userId: joyce.id,
+            };
+        }),
+        ...loginDateArr.map(day => {
+            return {
+                lastLogin: day,
+                userId: sheri.id,
+            };
+        }),
+    ];
+
+    await Promise.all(loginData.map(login => LoginStreak.create(login)));
 
     /*-------------------- BUDGET ----------------------*/
     const budget = await Promise.all([
@@ -572,3 +590,5 @@ if (module === require.main) {
      */
     console.log('seeding...');
 }
+
+module.exports = seed;

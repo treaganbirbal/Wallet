@@ -25,20 +25,25 @@ const User = db.define('user', {
       return () => this.getDataValue('salt');
     },
   },
-  firstName: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  lastName: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
   googleId: {
+    type: Sequelize.STRING,
+  },
+  personalityType: {
+    type: Sequelize.STRING,
+  },
+  pushToken: {
     type: Sequelize.STRING,
   },
   lastLogin: {
     type: Sequelize.DATE,
-  }
+  },
+  reminderInterval: {
+    type: Sequelize.INTEGER,
+  },
+  streakType: {
+    type: Sequelize.STRING,
+    defaultValue: 'Restaurants',
+  },
 });
 
 module.exports = User;
