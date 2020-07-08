@@ -5,12 +5,10 @@ const Account = db.define('account', {
   account_id: {
     type: Sequelize.STRING,
   },
-  // current balance is the total amount of funds in user account
+  // This will be balances.current in Plaid's response
   current_balance: {
     type: Sequelize.INTEGER,
   },
-  // available balance is user's current balance less any outstanding 
-  // holds or debits that have not yet posted to the account
   available_balance: {
     type: Sequelize.INTEGER,
   },

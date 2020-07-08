@@ -5,16 +5,16 @@ const Budget = db.define('budget', {
   income: {
     type: Sequelize.INTEGER
   },
-  static_costs: {
+  staticCosts: {
     type: Sequelize.INTEGER
   },
   savings: {
     type: Sequelize.INTEGER
   },
-  spending_budget: {
+  spendingBudget: {
     type: Sequelize.INTEGER
   },
-  food_and_drink: {
+  foodAndDrink: {
     type: Sequelize.INTEGER,
     defaultValue: 35
   },
@@ -22,7 +22,7 @@ const Budget = db.define('budget', {
     type: Sequelize.INTEGER,
     defaultValue: 10
   },
-  entertainment: {
+  recreation: {
     type: Sequelize.INTEGER,
     defaultValue: 15
   },
@@ -38,7 +38,7 @@ const Budget = db.define('budget', {
     type: Sequelize.INTEGER,
     defaultValue: 10
   },
-  shopping: {
+  shops: {
     type: Sequelize.INTEGER,
     defaultValue: 10
   },

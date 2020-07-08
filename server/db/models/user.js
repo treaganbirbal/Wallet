@@ -33,9 +33,9 @@ const User = db.define('user', {
     type: Sequelize.STRING,
     allowNull: false
   },
-  googleId: {
-    type: Sequelize.STRING,
-  }
+  lastLogin: {
+    type: Sequelize.DATE,
+  },
 });
 
 module.exports = User;
@@ -43,22 +43,22 @@ module.exports = User;
 /**
  * instanceMethods
  */
-User.prototype.correctPassword = function(candidatePwd) {
+User.prototype.correctPassword = function (candidatePwd) {
   return User.encryptPassword(candidatePwd, this.salt()) === this.password();
 };
 
-User.prototype.createBudget = function() {
+User.prototype.createBudget = function () {
   return Budget.create({ userId: this.id });
 };
 
 /**
  * classMethods
  */
-User.generateSalt = function() {
+User.generateSalt = function () {
   return crypto.randomBytes(16).toString('base64');
 };
 
-User.encryptPassword = function(plainText, salt) {
+User.encryptPassword = function (plainText, salt) {
   return crypto
     .createHash('RSA-SHA256')
     .update(plainText)
