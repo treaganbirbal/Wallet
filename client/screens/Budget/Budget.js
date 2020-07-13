@@ -21,36 +21,47 @@ class Budget extends React.Component {
   }
 
   getData() {
-    const { budget } = this.props;
-    let pieData = [];
-    let categories = [
-      'foodAndDrink',
-      'community',
-      'healthcare',
-      'recreation',
-      'service',
-      'shops',
-      'travel'
-    ];
 
-    for (let key in budget) {
-      if (categories.includes(key)) {
-        const properCase = key
-          .replace(/([a-z\d])([A-Z])/g, '$1' + ' ' + '$2')
-          .replace(/([A-Z]+)([A-Z][a-z\d]+)/g, '$1' + ' ' + '$2')
-          .replace(/\w\S*/g, function(txt) {
-            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-          });
-        pieData.push({ name: properCase, number: budget[key] });
-      }
-    }
+    let pieData = [
+      { foodAndDrink: 35 },
+      { travel: 10 },
+      { recreation: 15 },
+      { healthcare: 10 },
+      { service: 10 },
+      { community: 10 },
+      { shops: 10 }
+    ];
+    // const { budget } = this.props;
+    // let pieData = [];
+    // let categories = [
+    //   'foodAndDrink',
+    //   'community',
+    //   'healthcare',
+    //   'recreation',
+    //   'service',
+    //   'shops',
+    //   'travel'
+    // ];
+
+    // for (let key in budget) {
+    //   if (categories.includes(key)) {
+    //     const properCase = key
+    //       .replace(/([a-z\d])([A-Z])/g, '$1' + ' ' + '$2')
+    //       .replace(/([A-Z]+)([A-Z][a-z\d]+)/g, '$1' + ' ' + '$2')
+    //       .replace(/\w\S*/g, function(txt) {
+    //         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    //       });
+    //     pieData.push({ name: properCase, number: budget[key] });
+    //   }
+    // }
     return pieData;
   }
 
   render() {
     return (
       <View>
-        <View>
+        <Text>Budget</Text>
+        {/* <View>
           <Pie
             pieWidth={225}
             pieHeight={225}
@@ -69,7 +80,7 @@ class Budget extends React.Component {
               }}
             />
           </View>
-        </View>
+        </View> */}
       </View>
     );
   }
@@ -82,5 +93,4 @@ const mapState = state => {
   };
 };
 
-const BudgetConnect = connect(mapState)(Budget);
-export default BudgetConnect;
+export default connect(null, mapState)(Budget);

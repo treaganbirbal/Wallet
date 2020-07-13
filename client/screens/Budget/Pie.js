@@ -126,6 +126,6 @@ const pieColor = [
         '#7c87b8',
         '#d7f2df',
         '#f1dd6a'
-      ]
+  ]
 
 export default Pie;
