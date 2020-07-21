@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Text, Container, Content, Button, Header, Body } from "native-base";
+import { Text, Container, Content, Button, Header, Body, Image } from "native-base";
 import moment from "moment";
 import { FontAwesome } from "@expo/vector-icons";
 import { logout } from "../../store/user";
@@ -67,9 +67,10 @@ class Profile extends React.Component {
               marginBottom: 30,
             }}
           >
-            <Text style={{ color: "#fc5185", fontSize: 20 }}>Wallet </Text>
-            <Text style={{ fontSize: 20 }}>member since </Text>
-            <Text style={{ color: "#fc5185", fontSize: 20 }}>
+            <Text style={{ color: "#D75452", fontSize: 20 }}>Wallet </Text>
+            <Text style={{ color: "#222831", fontSize: 20}}>member since </Text>
+            <Text style={{ color: "#D75452", fontSize: 20 }}>
+
               {this.state.joined}
             </Text>
           </Text>
@@ -79,17 +80,36 @@ class Profile extends React.Component {
             primary
             style={{
               margin: 10,
+              marginLeft: 22,
+              marginRight: 22,
               backgroundColor: "#6CBDC3",
             }}
           >
             <Text style={{ fontWeight: "bold" }}>Link Bank Account</Text>
           </Button>
+
+          <Button
+            block
+            onPress={() => this.props.navigation.navigate("Calculator")}
+            primary
+            style={{
+              margin: 10,
+              marginLeft: 22,
+              marginRight: 22,
+              backgroundColor: "#6CBDC3",
+            }}
+          >
+            <Text style={{ fontWeight: "bold" }}>Loan Calculator</Text>
+          </Button>
+
           <Button
             block
             primary
             onPress={() => this.props.navigation.navigate("PasswordReset")}
             style={{
               margin: 10,
+              marginLeft: 22,
+              marginRight: 22,
               backgroundColor: "#6CBDC3",
             }}
           >
@@ -100,6 +120,8 @@ class Profile extends React.Component {
             danger
             style={{
               margin: 10,
+              marginLeft: 22,
+              marginRight: 22,
             }}
           >
             <FontAwesome name="power-off" size={24} color="white" />

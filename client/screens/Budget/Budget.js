@@ -27,6 +27,7 @@ const chartConfig = {
   barPercentage: 0.5,
   useShadowColorFromDataset: false, // optional
   withVerticalLabels: true,
+  transparent: true,
 };
 const description = [
   "(Groceries, restaurants, bars, nightlife, etc.)",

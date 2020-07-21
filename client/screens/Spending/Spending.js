@@ -13,7 +13,6 @@ import {
   CardItem,
 } from "native-base";
 import { LineChart } from "react-native-chart-kit";
-
 import { Dimensions, ScrollView } from "react-native";
 
 import { connect } from "react-redux";
