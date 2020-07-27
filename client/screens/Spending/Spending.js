@@ -12,6 +12,8 @@ import {
   Card,
   CardItem,
 } from "native-base";
+import SpendingChart from "./Chart";
+import SpendingCard from "./SpendingCard";
 import { LineChart } from "react-native-chart-kit";
 import { Dimensions, ScrollView } from "react-native";
 
@@ -30,7 +32,6 @@ export class SpendingScreen extends React.Component {
     };
     this.calculateNetTotal = this.calculateNetTotal.bind(this);
     this.calculateAccountTotal = this.calculateAccountTotal.bind(this);
-    // this.getAmountsPerTransaction = this.getAmountsPerTransaction.bind(this);
     this.onHandleChange = this.onHandleChange.bind(this);
   }
 
@@ -73,37 +74,6 @@ export class SpendingScreen extends React.Component {
         return account.accountId === id;
       })
       .splice(0, 7);
-    // const months = [
-    //   "Jan",
-    //   "Feb",
-    //   "Mar",
-    //   "Apr",
-    //   "May",
-    //   "Jun",
-    //   "Jul",
-    //   "Aug",
-    //   "Sep",
-    //   "Oct",
-    //   "Nov",
-    //   "Dec",
-    // ];
-
-    // const monthByNums = info.map((el) => {
-    //   return Number(el.date.slice(5, 7) - 1);
-    // });
-    // const arr = [];
-    // for (let i = 0; i < monthByNums.length; i++) {
-    //   let digit = monthByNums[i];
-    //   arr.push(months[digit]);
-    // }
-    // let newMonthArr = [arr[0] + info[0].date.slice(7)];
-    // for (let i = 0; i < arr.length; i++) {
-    //   let current = arr[0];
-    //   if (arr[i] !== current) {
-    //     newMonthArr.push(arr[i] + info[i].date.slice(7));
-    //     current = arr[i];
-    //   }
-    // }
     return (
       <Container>
         <Header
@@ -156,51 +126,7 @@ export class SpendingScreen extends React.Component {
         </Header>
 
         <Content style={{ padding: 20 }}>
-          <LineChart
-            data={{
-              labels: info
-                .map((el) => {
-                  return el.date.slice(5);
-                })
-                .reverse() || [0],
-              datasets: [
-                {
-                  data: info.length
-                    ? info
-                        .map((el) => {
-                          return el.amount * -1;
-                        })
-                        .reverse()
-                    : [0, 0, 0, 0],
-                },
-              ],
-            }}
-            width={Dimensions.get("window").width - 40} // from react-native
-            height={220}
-            yAxisLabel="$"
-            yAxisInterval={1} // optional, defaults to 1
-            chartConfig={{
-              backgroundColor: "#6CBDC3",
-              backgroundGradientFrom: "#6CBDC3",
-              backgroundGradientTo: "#82E0AA",
-              decimalPlaces: 2, // optional, defaults to 2dp
-              color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-              labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-              style: {
-                borderRadius: 10,
-              },
-              propsForDots: {
-                r: "6",
-                strokeWidth: "2",
-                stroke: "#ffa726",
-              },
-            }}
-            bezier
-            style={{
-              marginVertical: 8,
-              borderRadius: 16,
-            }}
-          />
+          <SpendingChart info={info} />
           <Text
             style={{
               alignSelf: "center",
@@ -213,34 +139,10 @@ export class SpendingScreen extends React.Component {
           </Text>
           {info.length ? (
             info.map((item, index) => {
-              return (
-                <Card key={index} style={{ borderRadius: 8 }}>
-                  <CardItem style={{ borderRadius: 8 }}>
-                    <Body>
-                      <Text style={{ fontWeight: "500", borderRadius: 20 }}>
-                        {item.name}
-                      </Text>
-                      <Text style={{ alignSelf: "flex-end" }}>
-                        <Text>{item.date}</Text>
-                      </Text>
-                      {item.amount < 0 ? (
-                        <Text style={{ color: "green", fontWeight: "bold" }}>
-                          ${item.amount * -1}
-                        </Text>
-                      ) : (
-                        <Text style={{ color: "#D75452", fontWeight: "bold" }}>
-                          -${"" + item.amount}
-                        </Text>
-                      )}
-                    </Body>
-                  </CardItem>
-                </Card>
-              );
+              return <SpendingCard info={info} item={item} index={index} />;
             })
           ) : (
-            <Text style={{ alignSelf: "center" }}>
-              There are no transactions for this account
-            </Text>
+            <Text>There are no transactions for this account</Text>
           )}
         </Content>
       </Container>
