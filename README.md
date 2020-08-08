@@ -1,5 +1,5 @@
 # Wallet
-![Wallet!](/assets/images/philly-magic-gardens.jpg )
+![Wallet!](https://github.com/treaganbirbal/Wallet/blob/master/assets/wallet_logo.png?raw=true "Wallet logo" )
 
 
   ### Budgeting can be hard. It can be difficult to keep track of where your money is going. We all know that financial health is important and you have probably tried staying on top of it to some degree. 
