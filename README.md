@@ -9,7 +9,7 @@
   ### Wallet is a personalized financial mobile application that encourages better spending and budget tracking. It connects to all of your financial accounts and gives you tools to help track your spending, manage your budget and reach your financial goals. We’re also committed to keeping your data secure. With multiple safety measures like secure encryption and multi-factor authentication, we keep your information protected.
   
   ## Features: 
-   - Link your accounts in place
+   - Securely link your accounts in place
    - Create a personal budget
    - Set spending goals
    - See a list of most recent transactions for each account
