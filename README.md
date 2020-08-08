@@ -18,7 +18,7 @@
    - Customizable user profile
    
   
-  ## How Wallet is built
+  ## How Wallet was built
   ### Wallet is built with Javascript, React Native, Redux, Node.js, Express, PostgreSQL, Charts.js, NativeBase & Plaid API.
 
   
