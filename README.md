@@ -32,3 +32,17 @@ To run this project, navigate to the directory and run one of the following yarn
 
 [**Watch the Demo Here**](https://www.youtube.com/watch?v=MBNpYkdR5_U) </br>
 [**User Interface Wireframes**](https://github.com/2004-wdf-capstone-team-c/Finance_Manager/blob/master/Wallet_wireframes.pdf)  
+
+![LogIn or SignUp](https://github.com/treaganbirbal/Wallet/blob/master/assets/Screen%20Shot%202020-08-08%20at%2012.07.35%20PM.png)
+![Enter Credentials](https://github.com/treaganbirbal/Wallet/blob/master/assets/Screen%20Shot%202020-08-08%20at%2012.07.42%20PM.png)
+![Link Bank Account](https://github.com/treaganbirbal/Wallet/blob/master/assets/Screen%20Shot%202020-08-08%20at%2012.08.13%20PM.png)
+![Dashboard](https://github.com/treaganbirbal/Wallet/blob/master/assets/Screen%20Shot%202020-08-08%20at%2012.08.20%20PM.png)
+![Dashboard Charts](https://github.com/treaganbirbal/Wallet/blob/master/assets/Screen%20Shot%202020-08-08%20at%2012.08.37%20PM.png)
+![Budget](https://github.com/treaganbirbal/Wallet/blob/master/assets/Screen%20Shot%202020-08-08%20at%2012.08.45%20PM.png)
+![Spending Breakdown](https://github.com/treaganbirbal/Wallet/blob/master/assets/Screen%20Shot%202020-08-08%20at%2012.09.03%20PM.png)
+![Set Budget](https://github.com/treaganbirbal/Wallet/blob/master/assets/Screen%20Shot%202020-08-08%20at%2012.09.13%20PM.png)
+![Transactions](https://github.com/treaganbirbal/Wallet/blob/master/assets/Screen%20Shot%202020-08-08%20at%2012.09.45%20PM.png)
+![Loan Calculator](https://github.com/treaganbirbal/Wallet/blob/master/assets/Screen%20Shot%202020-08-08%20at%2012.10.06%20PM.png)
+![Profile](https://github.com/treaganbirbal/Wallet/blob/master/assets/Screen%20Shot%202020-08-08%20at%2012.09.59%20PM.png)
+
+
